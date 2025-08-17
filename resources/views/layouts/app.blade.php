@@ -1,80 +1,129 @@
-//resources/views/layouts/app.blade.php
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>SB Admin 2 - Dashboard</title>
-  <!-- Custom fonts for this template-->
-  <link href="{{ asset('admin_assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('admin_assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f9fc;
+    }
+    #wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #4e73df;
+      color: white;
+      padding: 20px 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: #2e59d9;
+    }
+    .sidebar hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin: 15px 0;
+    }
+    /* Content */
+    #content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+    /* Navbar */
+    .navbar {
+      background: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .navbar form {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .navbar input {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .navbar button {
+      padding: 6px 10px;
+      background: #4e73df;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    /* Footer */
+    footer {
+      background: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+    h1 {
+      margin: 0;
+      color: #333;
+    }
+  </style>
 </head>
 <body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-  
-    <!-- Sidebar -->
-    @include('layouts.sidebar')
-    <!-- End of Sidebar -->
-  
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-  
-      <!-- Main Content -->
-      <div id="content">
-  
-        <!-- Topbar -->
-        @include('layouts.navbar')
-        <!-- End of Topbar -->
-  
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-  
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-          </div>
-  
-          @yield('contents')
-  
-          <!-- Content Row -->
-  
-  
-        </div>
-        <!-- /.container-fluid -->
-  
-      </div>
-      <!-- End of Main Content -->
-  
-      <!-- Footer -->
-      @include('layouts.footer')
-      <!-- End of Footer -->
-  
-    </div>
-    <!-- End of Content Wrapper -->
-  
-  </div>
-  <!-- End of Page Wrapper -->
-  
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-  
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{ asset('admin_assets/vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('admin_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="{{ asset('admin_assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-  <!-- Custom scripts for all pages-->
-  <script src="{{ asset('admin_assets/js/sb-admin-2.min.js') }}"></script>
-  <!-- Page level plugins -->
-  <script src="{{ asset('admin_assets/vendor/chart.js/Chart.min.js') }}"></script>
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+      <a href="{{ route('products') }}">Product</a>
+      <a href="/profile">Profile</a>
+      <hr>
+    </div>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper">
+
+      <!-- Navbar -->
+      <div class="navbar">
+        <!-- Left: Search -->
+        <span>{{ auth()->user()->name }} ({{ auth()->user()->level }})</span>
+
+
+        <!-- Right: User -->
+        <div>
+          <a href="{{ route('logout') }}" style="margin-left:15px; color:#4e73df; text-decoration:none;">Logout</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div id="content">
+        <h1>@yield('title')</h1>
+        @yield('contents')
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <span>Copyright © Your Website 2025</span>
+      </footer>
+
+    </div>
+  </div>
 </body>
 </html>

@@ -1,56 +1,42 @@
 @extends('layouts.app')
   
-@section('title', 'Home Product')
+@section('title')
   
 @section('contents')
-    <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mb-0">List Product</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
-    </div>
+    <h1 style="margin-bottom:0;">Product List</h1>
     <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    <table class="table table-hover">
-        <thead class="table-primary">
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Product Code</th>
-                <th>Description</th>
-                <th>Action</th>
+    <div style="margin-bottom:20px;">
+        <a href="{{ route('products.create') }}" 
+            style="display:inline-block; padding:10px 15px; background:#4e73df; color:white; text-decoration:none; border-radius:6px;">+ Add Product</a>
+    </div>
+    <table style="width:100%; border-collapse:collapse; background:white; border-radius:8px; overflow:hidden;">
+        <thead>
+            <tr style="background:#f8f9fc; text-align:left;">
+                <th style="padding:10px; border-bottom:1px solid #ddd;">ID</th>
+                <th style="padding:10px; border-bottom:1px solid #ddd;">Title</th>
+                <th style="padding:10px; border-bottom:1px solid #ddd;">Price</th>
+                <th style="padding:10px; border-bottom:1px solid #ddd;">Product Code</th>
+                <th style="padding:10px; border-bottom:1px solid #ddd;">Action</th>
             </tr>
         </thead>
-        <tbody>+
-            @if($product->count() > 0)
-                @foreach($product as $rs)
-                    <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $rs->title }}</td>
-                        <td class="align-middle">{{ $rs->price }}</td>
-                        <td class="align-middle">{{ $rs->product_code }}</td>
-                        <td class="align-middle">{{ $rs->description }}</td>  
-                        <td class="align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-0">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td class="text-center" colspan="5">Product not found</td>
-                </tr>
-            @endif
+        <tbody>
+            @foreach($products as $product)
+            <tr>
+                <td style="padding:10px; border-bottom:1px solid #eee;">{{ $product->id }}</td>
+                <td style="padding:10px; border-bottom:1px solid #eee;">{{ $product->title }}</td>
+                <td style="padding:10px; border-bottom:1px solid #eee;">{{ $product->price }}</td>
+                <td style="padding:10px; border-bottom:1px solid #eee;">{{ $product->product_code }}</td>
+                <td style="padding:10px; border-bottom:1px solid #eee;">
+                    <a href="{{ route('products.show', $product->id) }}" style="margin-right:5px; color:#4e73df;">View</a>
+                    <a href="{{ route('products.edit', $product->id) }}" style="margin-right:5px; color:#f6c23e;">Edit</a>
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Delete this product?')" style="background:none; border:none; color:#e74a3b; cursor:pointer;">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

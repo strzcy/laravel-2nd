@@ -28,7 +28,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Admin'
+            'level' => 'User'
         ]);
   
         return redirect()->route('login');
@@ -38,24 +38,31 @@ class AuthController extends Controller
     {
         return view('auth/login');
     }
-  
+
     public function loginAction(Request $request)
     {
-        Validator::make($request->all(), [
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
-        ])->validate();
-  
-        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed')
-            ]);
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->route('dashboard.admin'); // dashboard B
+            } else {
+                return redirect()->route('dashboard.user'); // dashboard A
+            }
         }
-  
-        $request->session()->regenerate();
-  
-        return redirect()->route('dashboard');
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
+
+
   
     public function logout(Request $request)
     {
