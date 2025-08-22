@@ -20,13 +20,13 @@ Route::controller(AuthController::class)->group(function () {
 });
   
 Route::middleware('auth')->group(function () {
+    Route::get('db', function () {
+        return view('db');
+    })->name('db');
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     
-    Route::get('db', function () {
-        return view('db');
-    })->name('db');
  
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('', 'index')->name('products');
