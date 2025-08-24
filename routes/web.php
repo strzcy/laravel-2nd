@@ -5,6 +5,17 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FranchiseController;
+use App\Http\Controllers\ProductSettingsController;
+use App\Http\Controllers\DashboardUserController;
+
+
+Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('dashboard.user');
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/product-settings', [ProductSettingsController::class, 'index'])->name('product.settings.index');
+    Route::patch('/product-settings/{product}/visibility', [ProductSettingsController::class, 'updateVisibility'])->name('product.settings.updateVisibility');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,9 +40,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
     
-    Route::get('db', function () {
-        return view('db');
-    })->name('db');
+    Route::get('db', [DashboardUserController::class, 'index'])->name('db');
  
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('', 'index')->name('products');

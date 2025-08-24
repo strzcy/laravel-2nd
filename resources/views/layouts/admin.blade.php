@@ -93,6 +93,10 @@
       text-align:center;
       margin-bottom:25px;
     }
+
+    .but {
+      text-align:center;
+    }
   </style>
 </head>
 <body id="page-top">

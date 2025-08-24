@@ -21,11 +21,11 @@
             @foreach($users as $user)
             <tr>
                 {{-- Nomor urut --}}
-                <td>{{ $loop->iteration }}</td>
+                <td class='but'>{{ $loop->iteration }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ substr($user->password, 0, 10) . '...' }}</td>
-                <td>
+                <td class='but'>
                     <form action="{{ route('profile.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')

@@ -10,21 +10,13 @@
             <tr style="background-color: #f8f9fc;">
                 <th>No</th>
                 <th>Title</th>
-                <th>Status</th>
-                <th>Toggle</th>
+                <th>Hidden|Visible</th>
             </tr>
             @foreach($products as $product)
             <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td class='but'>{{ $loop->iteration }}</td>
                 <td>{{ $product->title }}</td>
-                <td>
-                    @if($product->status)
-                        <span style="color:green;">Visible</span>
-                    @else
-                        <span style="color:red;">Hidden</span>
-                    @endif
-                </td>
-                <td>
+                <td class="but">
                     <label class="switch">
                         <input type="checkbox" class="toggle-status" data-id="{{ $product->id }}" {{ $product->status ? 'checked' : '' }}>
                         <span class="slider round"></span>
