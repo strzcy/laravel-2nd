@@ -78,7 +78,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
+            'title'  => 'required|string|max:255',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
@@ -109,4 +109,24 @@ class ProductController extends Controller
   
         return redirect()->route('products')->with('success', 'product deleted successfully');
     }
+
+    public function toggleStatus($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->status = !$product->status; // toggle true/false
+        $product->save();
+
+        return response()->json(['success' => true, 'status' => $product->status]);
+    }
+
+    public function settings()
+    {
+        $products = \App\Models\Product::all(); // ambil semua produk
+        return view('products.settings', compact('products'));
+    }
+
+    
+
+
+
 }

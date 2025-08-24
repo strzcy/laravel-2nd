@@ -3,29 +3,36 @@
 @section('title', 'User Dashboard')
 
 @section('content')
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="mb-3">Selamat Datang, {{ Auth::user()->name }} 🎉</h2>
-            <p class="text-muted">Kamu berhasil login sebagai <strong>User</strong>.</p>
-            
-            <hr>
-
-            <h4>Menu User</h4>
-            <ul>
-                <li><a href="#">Lihat Profil</a></li>
-                <li><a href="#">Edit Data</a></li>
-                <li><a href="#">Riwayat Aktivitas</a></li>
-                <li><a href="{{ route('logout') }}" 
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
-                </a></li>
-            </ul>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
+<div class="card mt-4">
+    <div class="card-header">
+        <h5>Form Pengajuan Franchise</h5>
+    </div>
+    <div class="card-body">
+        <form action="/franchise" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label>Nama Lengkap</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>No HP</label>
+                <input type="text" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Alamat</label>
+                <textarea name="address" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Alasan Bergabung</label>
+                <textarea name="reason" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajukan Franchise</button>
+        </form>
     </div>
 </div>
+
 @endsection

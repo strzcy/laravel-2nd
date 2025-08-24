@@ -105,8 +105,9 @@
       <a href="{{ route('dashboard') }}">Dashboard</a>
       <a href="/profile">Account</a>
       <a href="{{ route('products') }}">Product</a>
-      <a href="/profile">Product Settings</a>
-      <a href="/profile">Franchise request</a>
+      <a href="{{ route('products.settings') }}">Product Settings</a>
+      <a href="{{ route('reqFranchise') }}">Franchise request</a>
+
       <hr>
     </div>
 

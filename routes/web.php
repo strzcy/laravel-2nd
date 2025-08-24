@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
- 
+use App\Http\Controllers\FranchiseController;
+
 Route::get('/', function () {
     return view('welcome');
 });
  
-
+Route::get('products/settings', [ProductController::class, 'settings'])->name('products.settings');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
@@ -44,5 +45,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // User
+    Route::post('/franchise/store', [FranchiseController::class, 'store'])->name('franchise');
+
+    // Admin
+    Route::get('/admin/franchise', [FranchiseController::class, 'index'])->name('reqFranchise');
+
+
+    Route::post('/products/toggle/{id}', [ProductController::class, 'toggleStatus'])->name('products.toggle');
+
+    Route::post('/franchise', [FranchiseController::class, 'store']);
+
 
 });
