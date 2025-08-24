@@ -84,6 +84,73 @@
       margin: 0;
       color: #333;
     }
+
+
+
+    /* catalog.css */
+.catalog-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: #d81900ff; /* warna dasar hijau tua kayak gambar */
+    color: white;
+}
+
+.main-product {
+    flex: 1;
+    text-align: center;
+    background: #fff;
+    color: #d81900ff;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.main-product img {
+    max-width: 200px;
+}
+
+.variants {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.variant {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.variant img {
+    max-width: 100px;
+}
+
+.variant-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+    color: #d81900ff;
+    font-weight: bold;
+}
+
+.arrow {
+    text-decoration: none;
+    font-size: 20px;
+    background: #d81900ff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.arrow:hover {
+    background: #00796b;
+}
+
   </style>
 </head>
 <body id="page-top">
@@ -107,8 +174,8 @@
 
 
         <!-- Right: User -->
-        <div>
-          <a href="{{ route('logout') }}" style="margin-left:15px; color:#4e73df; text-decoration:none;">Logout</a>
+        <div class='log'>
+          <a href="{{ route('logout') }}" style="margin-left:15px; color#d81900ff; text-decoration:none;">Logout</a>
         </div>
       </div>
 

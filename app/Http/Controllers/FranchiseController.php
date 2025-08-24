@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Franchise;
+use App\Models\Franchise; // pastiin ini ada ya
 
 class FranchiseController extends Controller
 {
@@ -15,8 +15,8 @@ class FranchiseController extends Controller
 
     public function index()
     {
-        $requests = FranchiseRequest::latest()->get();
-        return view('franchise.index', compact('requests'));
+        // pake Franchise, bukan FranchiseRequest
+        $requests = Franchise::latest()->get();
+        return view('reqFranchise', compact('requests'));
     }
-
 }

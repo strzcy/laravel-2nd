@@ -12,8 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('franchises', function (Blueprint $table) {
-            $table->id()->nullable();
-            $table->string('nama_usaha');
+            $table->id();
+            $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->text('address');

@@ -16,15 +16,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($franchises as $f)
+            @foreach($requests as $r)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $f->name }}</td>
-                <td>{{ $f->email }}</td>
-                <td>{{ $f->phone }}</td>
-                <td>{{ $f->address }}</td>
-                <td>{{ $f->reason }}</td>
-                <td>{{ $f->created_at->format('d-m-Y') }}</td>
+                <td>{{ $r->name }}</td>
+                <td>{{ $r->email }}</td>
+                <td>{{ $r->phone }}</td>
+                <td>{{ $r->address }}</td>
+                <td>{{ $r->reason }}</td>
+                <td>{{ $r->created_at->format('d-m-Y') }}</td>
             </tr>
             @endforeach
         </tbody>

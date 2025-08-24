@@ -3,7 +3,8 @@
 @section('title', 'Product List')
   
 @section('contents')
-    <div style="padding:20px;">
+<hr>
+    <div style="">
         <h2 style="margin-bottom:20px;">Daftar Produk</h2>
 
         <div style="margin-bottom:20px;">

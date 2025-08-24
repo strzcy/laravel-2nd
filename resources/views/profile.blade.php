@@ -3,6 +3,7 @@
 @section('title', 'Profile')
 
 @section('contents')
+<hr>
     <div style="padding:20px;">
         <h2 style="margin-bottom:20px;">Daftar User</h2>
 

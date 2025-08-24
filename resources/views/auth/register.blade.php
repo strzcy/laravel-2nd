@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #36b9cc, #258ea6);
+      background: linear-gradient(to right, #36b9cc, #d81900);
       margin: 0;
       display: flex;
       justify-content: center;
@@ -29,7 +29,7 @@
       margin-bottom: 15px;
     }
     input[type="text"], input[type="email"], input[type="password"] {
-      width: 100%;
+      width: 95%;
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
@@ -38,7 +38,7 @@
     button {
       width: 100%;
       padding: 12px;
-      background: #36b9cc;
+      background: #d81900;
       color: white;
       border: none;
       border-radius: 6px;
@@ -46,14 +46,14 @@
       cursor: pointer;
     }
     button:hover {
-      background: #2c9faf;
+      background: #b71500;
     }
     .extra {
       text-align: center;
       margin-top: 15px;
     }
     .extra a {
-      color: #36b9cc;
+      color: #d81900;
       text-decoration: none;
       font-size: 14px;
     }

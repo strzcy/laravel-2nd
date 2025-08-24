@@ -4,13 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('status')->default('pending'); 
-            // default bisa kamu ubah ke "active" atau sesuai kebutuhan
+            $table->boolean('status')->default(1); // 1 = visible, 0 = hidden
         });
     }
 
@@ -21,3 +19,4 @@ return new class extends Migration
         });
     }
 };
+

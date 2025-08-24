@@ -1,6 +1,6 @@
 @extends('layouts.admin')
   
-@section('title', 'Add Product')
+@section('title')
   
 @section('contents')
     <h1 style="margin-bottom:0;">Add Product</h1>

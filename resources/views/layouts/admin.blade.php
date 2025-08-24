@@ -9,6 +9,9 @@
       margin: 0;
       background: ##f0d6cb;
     }
+    .log a {
+      color:#d81900ff;
+    }
     #wrapper {
       display: flex;
       min-height: 100vh;
@@ -65,7 +68,7 @@
     }
     .navbar button {
       padding: 6px 10px;
-      background: #4e73df;
+      background: #d81900ff;
       color: white;
       border: none;
       border-radius: 4px;
@@ -125,8 +128,8 @@
 
 
         <!-- Right: User -->
-        <div>
-          <a href="{{ route('logout') }}" style="margin-left:15px; color:#4e73df; text-decoration:none;">Logout</a>
+        <div class='log'>
+          <a href="{{ route('logout') }}" style="margin-left:15px; color:#d81900ff; text-decoration:none;">Logout</a>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\ProductSettingsController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DbController;
 
 
 Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('dashboard.user');
@@ -18,7 +19,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::post('/franchise/store', [FranchiseController::class, 'store'])->name('franchise.store');
-Route::get('/franchise', [FranchiseController::class, 'reqFranchise'])->name('reqFranchise');
+Route::get('/franchise', [FranchiseController::class, 'index'])->name('reqFranchise');
 
 
 Route::get('/', function () {
@@ -59,8 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // User
-    Route::post('/franchise/store', [FranchiseController::class, 'store'])->name('franchise');
+Route::get('/admin/dashboard', [App\Http\Controllers\dbController::class, 'index'])->name('dashboard');
 
 
     Route::post('/products/toggle/{id}', [ProductController::class, 'toggleStatus'])->name('products.toggle');

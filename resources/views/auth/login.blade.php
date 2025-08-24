@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #4e73df, #224abe);
+      background: linear-gradient(to right, #4e73df, #d81900);
       margin: 0;
       display: flex;
       justify-content: center;
@@ -29,17 +29,16 @@
       margin-bottom: 15px;
     }
     input[type="email"], input[type="password"] {
-      width: 90%;
+      width: 93%;
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
-      align-items:center;
     }
     button {
       width: 100%;
       padding: 12px;
-      background: #4e73df;
+      background: #d81900;
       color: white;
       border: none;
       border-radius: 6px;
@@ -47,14 +46,14 @@
       cursor: pointer;
     }
     button:hover {
-      background: #2e59d9;
+      background: #b71500;
     }
     .extra {
       text-align: center;
       margin-top: 15px;
     }
     .extra a {
-      color: #4e73df;
+      color: #d81900;
       text-decoration: none;
       font-size: 14px;
     }
@@ -71,7 +70,6 @@
       <div class="form-group">
         <input type="password" name="password" placeholder="Password" required>
       </div>
-
       <button type="submit">Login</button>
     </form>
     <div class="extra">
