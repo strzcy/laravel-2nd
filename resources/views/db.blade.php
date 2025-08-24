@@ -31,4 +31,52 @@
         @endforelse
     </div>
 </div>
+
+<h2>Katalog Produk</h2>
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+    @foreach($products as $product)
+        <div style="border:1px solid #ddd; padding:10px; width:200px; text-align:center;">
+            <img src="{{ asset($product->image) }}" style="width:100%; height:150px; object-fit:cover;">
+            <h4>{{ $product->title }}</h4>
+            <p>Rp {{ number_format($product->price) }}</p>
+        </div>
+    @endforeach
+</div>
+
+<hr>
+
+<div class="container">
+    <h2>Pengajuan Franchise</h2>
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form action="{{ route('reqFranchise') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label>Nama</label>
+            <input type="text" name="nama" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea name="address" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Reason</label>
+            <textarea name="reason" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Kirim Pengajuan</button>
+    </form>
+
+</div>
+
 @endsection

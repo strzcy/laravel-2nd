@@ -6,6 +6,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>No</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>No HP</th>
@@ -17,6 +18,7 @@
         <tbody>
             @foreach($franchises as $f)
             <tr>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $f->name }}</td>
                 <td>{{ $f->email }}</td>
                 <td>{{ $f->phone }}</td>

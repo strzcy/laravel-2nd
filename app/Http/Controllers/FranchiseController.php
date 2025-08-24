@@ -10,12 +10,13 @@ class FranchiseController extends Controller
     public function store(Request $request)
     {
         Franchise::create($request->all());
-        return back()->with('success', 'Pengajuan franchise berhasil dikirim!');
+        return redirect()->back()->with('success', 'Request berhasil dikirim!');
     }
 
     public function index()
     {
-        $franchises = Franchise::latest()->get();
-        return view('reqFranchise', compact('franchises'));
+        $requests = FranchiseRequest::latest()->get();
+        return view('franchise.index', compact('requests'));
     }
+
 }

@@ -14,8 +14,12 @@ Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('
 
 Route::prefix('admin')->group(function () {
     Route::get('/product-settings', [ProductSettingsController::class, 'index'])->name('product.settings.index');
-    Route::patch('/product-settings/{product}/visibility', [ProductSettingsController::class, 'updateVisibility'])->name('product.settings.updateVisibility');
+    Route::post('/product-settings/update', [ProductSettingsController::class, 'updateVisibility'])->name('product.settings.updateVisibility');
 });
+
+Route::post('/franchise/store', [FranchiseController::class, 'store'])->name('franchise.store');
+Route::get('/franchise', [FranchiseController::class, 'reqFranchise'])->name('reqFranchise');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,9 +61,6 @@ Route::middleware('auth')->group(function () {
 
     // User
     Route::post('/franchise/store', [FranchiseController::class, 'store'])->name('franchise');
-
-    // Admin
-    Route::get('/admin/franchise', [FranchiseController::class, 'index'])->name('reqFranchise');
 
 
     Route::post('/products/toggle/{id}', [ProductController::class, 'toggleStatus'])->name('products.toggle');

@@ -6,25 +6,31 @@
     <div style="padding:20px;">
         <h2 style="margin-bottom:20px;">Product Visibility Settings</h2>
 
-        <table border="1" cellspacing="0" cellpadding="10" style="width:100%; border-collapse: collapse;">
-            <tr style="background-color: #f8f9fc;">
-                <th>No</th>
-                <th>Title</th>
-                <th>Hidden|Visible</th>
-            </tr>
-            @foreach($products as $product)
-            <tr>
-                <td class='but'>{{ $loop->iteration }}</td>
-                <td>{{ $product->title }}</td>
-                <td class="but">
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-status" data-id="{{ $product->id }}" {{ $product->status ? 'checked' : '' }}>
-                        <span class="slider round"></span>
-                    </label>
-                </td>
-            </tr>
-            @endforeach
-        </table>
+        <form method="POST" action="{{ route('product.settings.updateVisibility') }}">
+            @csrf
+            <table border="1" cellspacing="0" cellpadding="10" style="width:100%; border-collapse: collapse;">
+                <tr style="background-color: #f8f9fc;">
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Hidden | Visible</th>
+                </tr>
+                @foreach($products as $product)
+                <tr>
+                    <td class='but'>{{ $loop->iteration }}</td>
+                    <td>{{ $product->title }}</td>
+                    <td class='but'>
+                        <label class="switch">
+                            <input type="checkbox" name="visibility[{{ $product->id }}]" value="1" {{ $product->status ? 'checked' : '' }}>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+            <button type="submit" style="margin-top:15px; padding:8px 15px; background:#4e73df; color:white; border:none; border-radius:4px; cursor:pointer;">
+                Save
+            </button>
+        </form>
     </div>
 
     <style>
@@ -62,22 +68,4 @@
             transform: translateX(26px);
         }
     </style>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).on('change', '.toggle-status', function() {
-            let productId = $(this).data('id');
-            
-            $.ajax({
-                url: '/products/' + productId + '/toggle-status',
-                type: 'PATCH',
-                data: {_token: '{{ csrf_token() }}'},
-                success: function(response) {
-                    if(response.success) {
-                        location.reload(); // refresh biar status teks ikut berubah
-                    }
-                }
-            });
-        });
-    </script>
 @endsection
