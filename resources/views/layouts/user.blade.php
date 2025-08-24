@@ -90,12 +90,12 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <!-- <div class="sidebar">
       <a href="{{ route('dashboard') }}">Dashboard</a>
       <a href="{{ route('products') }}">Product</a>
       <a href="/profile">Profile</a>
       <hr>
-    </div>
+    </div> -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper">
@@ -103,7 +103,7 @@
       <!-- Navbar -->
       <div class="navbar">
         <!-- Left: Search -->
-        <span>{{ auth()->user()->name }} ({{ auth()->user()->level }})</span>
+        <span>{{ auth()->user()->name }}</span>
 
 
         <!-- Right: User -->

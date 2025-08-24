@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- kalau kamu sudah punya layout utama --}}
+@extends('layouts.user') {{-- kalau kamu sudah punya layout utama --}}
 
 @section('title', 'User Dashboard')
 
@@ -13,6 +13,8 @@
 
             <h4>Menu User</h4>
             <ul>
+                <li><a href="#">Lihat Profil</a></li>
+                <li><a href="#">Edit Data</a></li>
                 <li><a href="#">Riwayat Aktivitas</a></li>
                 <li><a href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

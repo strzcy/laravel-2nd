@@ -28,7 +28,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'User'
+            'role' => 'user'
         ]);
   
         return redirect()->route('login');
@@ -50,10 +50,16 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
-            if ($user->role === 'user') {
-                return redirect()->route('db'); // dashboard B
+            if ($user->role === 'admin') {
+                return redirect()->route('dashboard'); // dashboard B
+            } elseif ($user->role === 'user') {
+                return redirect()->route('db'); // dashboard A
             } else {
-                return redirect()->route('dashboard'); // dashboard A
+                // role tidak dikenali
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Akun Anda tidak memiliki akses.',
+                ])->onlyInput('email');
             }
         }
 
