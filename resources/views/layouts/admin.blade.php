@@ -7,7 +7,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f8f9fc;
+      background: ##f0d6cb;
     }
     #wrapper {
       display: flex;
@@ -16,7 +16,7 @@
     /* Sidebar */
     .sidebar {
       width: 220px;
-      background: #4e73df;
+      background: #d81900ff;
       color: white;
       padding: 20px 0;
     }
@@ -27,7 +27,7 @@
       text-decoration: none;
     }
     .sidebar a:hover {
-      background: #2e59d9;
+      background: #e71a02;
     }
     .sidebar hr {
       border: none;
@@ -84,6 +84,15 @@
       margin: 0;
       color: #333;
     }
+    img {
+      width: 50px;
+    }
+    .logo {
+      /* align-items:center;
+      justify-content:center; */
+      text-align:center;
+      margin-bottom:25px;
+    }
   </style>
 </head>
 <body id="page-top">
@@ -91,9 +100,13 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
+      <div class="logo"><img src="{{ asset('storage/walls.png') }}" alt="logo"></div>
+
       <a href="{{ route('dashboard') }}">Dashboard</a>
+      <a href="/profile">Account</a>
       <a href="{{ route('products') }}">Product</a>
-      <a href="/profile">Profile</a>
+      <a href="/profile">Product Settings</a>
+      <a href="/profile">Franchise request</a>
       <hr>
     </div>
 

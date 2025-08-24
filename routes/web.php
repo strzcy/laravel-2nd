@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
  
+
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
     Route::post('register', 'registerSave')->name('register.save');
@@ -18,15 +20,17 @@ Route::controller(AuthController::class)->group(function () {
   
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
+
+
   
 Route::middleware('auth')->group(function () {
-    Route::get('db', function () {
-        return view('db');
-    })->name('db');
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     
+    Route::get('db', function () {
+        return view('db');
+    })->name('db');
  
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('', 'index')->name('products');

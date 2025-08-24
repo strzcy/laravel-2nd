@@ -12,7 +12,7 @@
 
         <table border="1" cellspacing="0" cellpadding="10" style="width:100%; border-collapse: collapse;">
             <tr style="background-color: #f2f2f2;">
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Password (Hashed)</th>
@@ -20,7 +20,8 @@
             </tr>
             @foreach($users as $user)
             <tr>
-                <td>{{ $user->id }}</td>
+                {{-- Nomor urut --}}
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ substr($user->password, 0, 10) . '...' }}</td>

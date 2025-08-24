@@ -29,10 +29,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
- 
+        $request->validate([
+            'title'        => 'required|string|max:255',
+            'price'        => 'required|numeric',
+            'product_code' => 'required|string|max:100',
+            'description'  => 'nullable|string',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+        ]);
+
+        $data = $request->only(['title','price','product_code','description']);
+
+        if ($request->hasFile('image')) {
+            $fileName = time().'_'.$request->image->getClientOriginalName();
+            $request->image->move(public_path('uploads/products'), $fileName);
+            $data['image'] = 'uploads/products/' . $fileName;
+        }
+
+        Product::create($data);
+
         return redirect()->route('products')->with('success', 'Product added successfully');
     }
+
+
   
     /**
      * Display the specified resource.
@@ -59,12 +77,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name'  => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+        ]);
+
         $product = Product::findOrFail($id);
-  
-        $product->update($request->all());
-  
-        return redirect()->route('products')->with('success', 'product updated successfully');
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $fileName = time().'_'.$request->image->getClientOriginalName();
+            $request->image->move(public_path('uploads/products'), $fileName);
+            $data['image'] = 'uploads/products/' . $fileName;
+        }
+
+        $product->update($data);
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
+
   
     /**
      * Remove the specified resource from storage.
